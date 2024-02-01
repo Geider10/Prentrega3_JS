@@ -1,0 +1,138 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: #e1e1e1;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    background: #b083c5;
+    padding: 20px 40px;
+}
+.btn{
+    padding: 5px;
+    border: none;
+    border-radius: 50%;
+}
+.btn span{
+    font-size: 15px;
+}
+
+.content{
+    border: 1px solid;
+}
+.contentSearch{
+    margin:20px;
+    text-align: center;
+}
+.contentSearch label{
+    display: inline-block;
+    margin-right: 10px;
+}
+.contentSearch .txt{
+    border: none;
+    padding: 5px 10px;
+    font-size: 1rem;
+}
+
+.contentProducts{
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    gap: 20px;
+}
+.card{
+    width: 280px;
+    height: 280px;
+    border-radius: 10px;
+    border: 1px solid;
+    padding: 10px;
+}
+.card img{
+    width: 100%;
+    height: 60%;
+    margin-bottom: 10px;
+}
+.card h2{
+    margin-bottom: 10px;
+}
+.card h3{
+    display: inline-block;
+}
+.card .buy{
+    background-color: green;
+    border-radius: 10px;
+    font-size: 1rem;
+    padding: 10px;
+    cursor: pointer;
+    float: right;
+}
+.off{
+    display: none;
+}
+/* modal */
+.modal {
+    background-color: #f1f1f1;
+    width: 500px;
+    position: fixed;
+    z-index: 3;
+    top: 60px;
+    right: 0;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
+  }
+  .modal .hModal {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: black;
+  }
+  .modal .hModal h2 {
+    font-size: 30px;
+    color: white;
+  }
+  .modal .hModal .closeCart {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 25px;
+    display: inline-block;
+    color: white;
+  }
+  .modal .cModal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .modal .cModal .cartProduct {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid;
+    padding: 10px 0;
+    margin: 5px 0;
+  }
+  .modal .cModal .cartProduct .imgModal {
+    width: 50px;
+    height: 50px;
+  }
+  .modal .cModal .cartProduct .closeProduct {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: red;
+    font-size: 1rem;
+    display: inline-block;
+  }
+  .modal .fModal {
+    padding: 10px 0;
+  }
+  .modal .fModal p {
+    font-size: 20px;
+    text-align: center;
+  }

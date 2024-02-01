@@ -8,11 +8,41 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Elegi tu sapato, tu estilo!</h1>
-    <section>
+    <header>
+        <h1>Elegi tu sapato, tu estilo!</h1>
+        <button class="btn" id="btnModalO">
+            <span>🛒</span>
+            <span id="cartCount">0</span>
+        </button>
+    </header>
 
+    <section class="modal off" id="conteinerModal" >
+        <div class="hModal" id="headerModal" >
+            <h2>Carrito de compras</h2>
+            <button class="closeCart" id="btnModalC">X</button>
+        </div>
+        <div class="cModal" id="contentModal" modoGray>
+        </div>
+        <div class="fModal" id="footerModal" modoGray>
+            <p id="payTotal"> Total a pagar : $</p>
+        </div>
     </section>
+    <main class="content">
+        <section class="contentSearch">
+            <label for="search">Buscar</label>
+            <input type="search" class="txt" id="iptSearch" name="search">
+        </section>
+        <section id="contentProducts">
+            <div class="card">
+                <img src="media/sapatos3a.jpg" alt="sapatos de color ">
+                <h2>Bursa Blue</h2>
+                <h3>80000</h3>
+                <button class="btn buy">Agregar</button>
+            </div>
+        </section>
+    </main>
 
+    <script src="dataLocal.js"></script>
     <script src="carrito.js"></script>
 </body>
 </html>
