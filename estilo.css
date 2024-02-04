@@ -17,6 +17,7 @@ header{
     padding: 5px;
     border: none;
     border-radius: 50%;
+    cursor: pointer;
 }
 .btn span{
     font-size: 15px;
@@ -25,9 +26,12 @@ header{
 .content{
     border: 1px solid;
 }
-.contentSearch{
-    margin:20px;
-    text-align: center;
+.contentTools{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 0;
+
 }
 .contentSearch label{
     display: inline-block;
@@ -37,6 +41,9 @@ header{
     border: none;
     padding: 5px 10px;
     font-size: 1rem;
+}
+.contentOption select{  
+    padding: 5px
 }
 
 .contentProducts{
