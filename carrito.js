@@ -1,19 +1,28 @@
 const d = document;
 const cartCount = d.getElementById("cartCount");
-const modal = d.getElementById("conteinerModal");
+const modalIcon = d.getElementById("conteinerModal");
+const modalContent = d.getElementById("contentModal");
 const btnModalOpen = d.getElementById("btnModalO");
 const btnModalClose  = d.getElementById("btnModalC");
+const payTotalCart = d.getElementById("payTotal");
 
 const contentProducts = d.getElementById("contentProducts");
 const inputSearch = d.getElementById("iptSearch");
 const btnOrder = d.getElementById("btnOrder");
 
-btnModalOpen.addEventListener("click",()=>{modal.classList.remove("off")})
-btnModalClose.addEventListener("click",()=>{modal.classList.add("off")})
+const loadCart = JSON.parse(localStorage.getItem("cart")) || [];
+const myCart = new Cart(loadCart);
+cartCount.innerText = myCart.getCount();
+btnModalOpen.addEventListener("click",()=>{
+    modalIcon.classList.remove("off");
+    const productSelect = myCart.getProducts();
+    renderizarCart(productSelect);
+    payTotalCart.innerText = myCart.getSum();
+})
+btnModalClose.addEventListener("click",()=>{modalIcon.classList.add("off")})
 
-
-const createProducts=(productsArray)=>{
-    // contentProducts ="";
+const renderizarProducts=(productsArray)=>{
+    contentProducts.innerHTML ="";
     productsArray.forEach(element => {//llenar el html con cada producto del array
         contentProducts.innerHTML +=//html 
         `<div class="card">
@@ -30,5 +39,39 @@ const createProducts=(productsArray)=>{
 const addToCart =(e)=>{
     const id = e.target.id;
     const getProduct = productos.find(item => item.id == id);
-    console.log(getProduct);
+    myCart.addToCart(getProduct);
+    cartCount.innerText = myCart.getCount();
+
 }
+const renderizarCart =(productsArray)=>{
+    modalContent.innerHTML = "";
+    productsArray.forEach(p => {
+        modalContent.innerHTML +=//html
+        `<div class="cartProduct">
+           <img src="${p.img}" class="imgModal" alt="${p.name}">
+           <h3>${p.name}</h3>
+           <p>${p.quantity}</p>
+           <p>${p.price}</p>
+           <button class="closeProduct" id="btnCloseProduct">X</button>
+        </div>`
+    });
+}
+inputSearch.addEventListener("input",(e)=>{
+    const search = e.target.value;
+    const productsFilter = productos.filter( pro => pro.name.toLowerCase().includes(search.toLowerCase()));
+    renderizarProducts(productsFilter);
+})
+btnOrder.addEventListener("click",()=>{
+    const filter =  productos.sort((a,b)=>{
+        if(a.price < b.price){
+            return -1
+        }
+        else{
+            return 1
+        }
+        return 0;
+    })
+    renderizarProducts(filter);
+    btnOrder.setAttribute("disabled",true);
+})
+renderizarProducts(productos);
