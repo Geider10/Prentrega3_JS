@@ -15,8 +15,7 @@ const myCart = new Cart(loadCart);
 cartCount.innerText = myCart.getCount();
 btnModalOpen.addEventListener("click",()=>{
     modalIcon.classList.remove("off");
-    const productSelect = myCart.getProducts();
-    renderizarCart(productSelect);
+    renderizarCart(myCart.getProducts());
     payTotalCart.innerText = myCart.getSum();
 })
 btnModalClose.addEventListener("click",()=>{modalIcon.classList.add("off")})
