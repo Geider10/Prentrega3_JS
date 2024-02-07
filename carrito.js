@@ -52,6 +52,7 @@ const renderizarCart =(productsArray)=>{
            <h3>${p.name}</h3>
            <p>${p.quantity}</p>
            <p>${p.price}</p>
+           <p>${p.price * p.quantity}</p>
            <button class="closeProduct" id="btnCloseProduct">X</button>
         </div>`
     });

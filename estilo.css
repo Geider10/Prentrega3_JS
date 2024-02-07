@@ -50,7 +50,7 @@ header{
     width: 100%;
     height: auto;
     display: grid;
-    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
 }
 .card{
@@ -109,6 +109,14 @@ header{
     font-size: 25px;
     display: inline-block;
     color: white;
+  }
+  .modal .titleModal{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+  }
+  .modal .titleModal p{
+    font-weight: bold;
   }
   .modal .cModal {
     display: flex;
