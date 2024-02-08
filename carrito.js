@@ -41,6 +41,17 @@ const addToCart =(e)=>{
     myCart.addToCart(getProduct);
     cartCount.innerText = myCart.getCount();
 
+    Toastify({
+        gravity: "bottom",
+        position: "center",
+        text: "Se agrego el producto",
+        duration: 3000,
+        style: {
+            background: '#0f3443',
+            color: "yellow"
+        }
+      
+    }).showToast();
 }
 const renderizarCart =(productsArray)=>{
     modalContent.innerHTML = "";
@@ -75,3 +86,14 @@ btnOrder.addEventListener("click",()=>{
     btnOrder.setAttribute("disabled",true);
 })
 renderizarProducts(productos);
+const getApiLocal = ()=>{
+    const endPoint = "apiLocal/data.json";
+    fetch(endPoint).then(res => res.json())
+    .then(r =>{
+        const data = r.productos;
+        console.table(data);
+    }).catch(e => {
+        console.log("Hay un error");
+    })
+
+}
