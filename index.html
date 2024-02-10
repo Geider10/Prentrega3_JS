@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <link rel="stylesheet" href="estilo.css">
     <title>Document</title>
@@ -46,18 +45,20 @@
             </div>
             <div class="contentOption">
                 <select id="selectCategory">
-                    <option value="">tacos</option>
-                    <option value="">sapatos</option>
                 </select>
             </div>
-           <button class="btn" id="btnOrder"> Order</button>
+           <!-- <button class="btn" id="btnOrder"> Order</button> -->
         </section>
         <section id="contentProducts" class="contentProducts">
+           
         </section>
+        <p class="txtError off" id="errorTxt">No hay dicho producto</p>
     </main>
 
     <script src="Cart.js"></script>
     <script src="dataLocal.js"></script>
     <script src="carrito.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

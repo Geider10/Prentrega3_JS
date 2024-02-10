@@ -8,7 +8,7 @@ const payTotalCart = d.getElementById("payTotal");
 
 const contentProducts = d.getElementById("contentProducts");
 const inputSearch = d.getElementById("iptSearch");
-const btnOrder = d.getElementById("btnOrder");
+const selectCategory = d.getElementById("selectCategory");
 
 const loadCart = JSON.parse(localStorage.getItem("cart")) || [];
 const myCart = new Cart(loadCart);
@@ -36,22 +36,25 @@ const renderizarProducts=(productsArray)=>{
     btnsCart.forEach(btn => btn.addEventListener("click",addToCart))
 }
 const addToCart =(e)=>{
-    const id = e.target.id;
-    const getProduct = productos.find(item => item.id == id);
-    myCart.addToCart(getProduct);
-    cartCount.innerText = myCart.getCount();
-
-    Toastify({
-        gravity: "bottom",
-        position: "center",
-        text: "Se agrego el producto",
-        duration: 3000,
-        style: {
-            background: '#0f3443',
-            color: "yellow"
+    Swal.fire({
+        title: "Agregar producto",
+        imageUrl: "https://img.freepik.com/vector-gratis/carro-compras-realista_1284-6011.jpg?w=740&t=st=1707533483~exp=1707534083~hmac=c548b834be7bef8cddc5e95ddf883b374f4032d38fdb660db92bb789583c744b",
+        imageWidth: 200,
+        imageHeight: 100,
+        imageAlt: "Custom image",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Confirmar"
+      }).then((result) => {
+        const confirm = result.isConfirmed;
+        if(confirm){
+            const id = e.target.id;
+            const getProduct = productos.find(item => item.id == id);
+            myCart.addToCart(getProduct);
+            cartCount.innerText = myCart.getCount();
         }
-      
-    }).showToast();
+      });
 }
 const renderizarCart =(productsArray)=>{
     modalContent.innerHTML = "";
@@ -71,29 +74,43 @@ inputSearch.addEventListener("input",(e)=>{
     const search = e.target.value;
     const productsFilter = productos.filter( pro => pro.name.toLowerCase().includes(search.toLowerCase()));
     renderizarProducts(productsFilter);
+    if(search !== " " && productsFilter.length >=1){
+        d.getElementById("errorTxt").classList.add("off");
+    }
+    else{
+        d.getElementById("errorTxt").classList.remove("off");
+    }
 })
-btnOrder.addEventListener("click",()=>{
-    const filter =  productos.sort((a,b)=>{
-        if(a.price < b.price){
-            return -1
-        }
-        else{
-            return 1
-        }
-        return 0;
-    })
-    renderizarProducts(filter);
-    btnOrder.setAttribute("disabled",true);
+selectCategory.addEventListener("change",(e)=>{
+    const option = e.target.value;
+    filterCategory(option);
+
 })
-renderizarProducts(productos);
+const renderCategory =(cateList)=>{
+    selectCategory.innerHTML="";
+    cateList.forEach(c => {
+        selectCategory.innerHTML +=//html
+        `<option value="${c.id}">${c.name}</option>
+        `
+    });
+}
+const filterCategory =(idCate)=>{
+    const listProductos = productos.filter(p=>p.id == idCate);
+    renderizarProducts(listProductos);
+}
 const getApiLocal = ()=>{
     const endPoint = "apiLocal/data.json";
     fetch(endPoint).then(res => res.json())
     .then(r =>{
-        const data = r.productos;
-        console.table(data);
+        const {productos, categorys} = r;
+        renderizarProducts(productos);
+        renderCategory(categorys);
     }).catch(e => {
-        console.log("Hay un error");
+        Swal.fire({
+            icon: "error",
+            title: "Ocurrio un error",
+            // showConfirmButtom: false,
+          });
     })
-
 }
+getApiLocal();
