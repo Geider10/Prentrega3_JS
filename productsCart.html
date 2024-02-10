@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Todos los productos seleccionados</h1>
+        <a href="index.html" class="btn key">
+            <span>🏠</span>
+        </a>
+    </header>
+    <main class="tableMain">
+        <table class="table">
+            <thead>
+                <tr class="rowTable">
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+
+            <tbody id="modalListProducts">
+                <tr class="rowTable">
+                    <td> ${product.name} </td>
+                    <td> ${product.units}</td>
+                    <td>$${product.price}</td>
+                    <td>$${product.price * product.units}</td>
+                    
+                </tr>
+              
+            </tbody>
+        
+        </table>
+    </main>
+
+</body>
+</html>

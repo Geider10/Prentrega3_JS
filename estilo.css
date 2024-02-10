@@ -18,11 +18,14 @@ header{
     border: none;
     border-radius: 50%;
     cursor: pointer;
+    text-decoration: none;
 }
 .btn span{
-    font-size: 15px;
+  font-size: 20px;
 }
-
+.key{
+  background-color: white;
+}
 .content{
     border: 1px solid;
     padding: 0 40px;
@@ -158,4 +161,19 @@ header{
   .modal .fModal p {
     font-size: 20px;
     text-align: center;
+  }
+
+  /* productsCart */
+  .tableMain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:100px;
+  }
+  table{
+    border: 1px solid;
+    padding: 20px;
+  }
+  td{
+    padding: 20px;
   }

@@ -16,14 +16,14 @@ const myCart = new Cart(loadCart);
 /*
 renderizar por categorias ✅
 filtrar a traves de fetch ✅
-crear maquetacion de la pagina del carrito
-renderizar en tabla los productos 
+crear maquetacion de la pagina del carrito ✅
+renderizar en tabla los productos con api local
 agregar opcion de eliminar del carrito y localstorage
 agregar botones para sumar y restar cantidad
  */
 cartCount.innerText = myCart.getCount();
 btnModalOpen.addEventListener("click",()=>{
-    modalIcon.classList.remove("off");
+    // modalIcon.classList.remove("off");
     renderizarCart(myCart.getProducts());
     payTotalCart.innerText = myCart.getSum();
 })
