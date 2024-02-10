@@ -14,7 +14,8 @@ const loadCart = JSON.parse(localStorage.getItem("cart")) || [];
 const myCart = new Cart(loadCart);
 
 /*
-renderizar por categorias
+renderizar por categorias ✅
+filtrar a traves de fetch ✅
 crear maquetacion de la pagina del carrito
 renderizar en tabla los productos 
 agregar opcion de eliminar del carrito y localstorage
@@ -80,14 +81,22 @@ const renderizarCart =(productsArray)=>{
 }
 inputSearch.addEventListener("input",(e)=>{
     const search = e.target.value;
-    const productsFilter = productos.filter( pro => pro.name.toLowerCase().includes(search.toLowerCase()));
-    renderizarProducts(productsFilter);
-    if(search !== " " && productsFilter.length >=1){
-        d.getElementById("errorTxt").classList.add("off");
-    }
-    else{
-        d.getElementById("errorTxt").classList.remove("off");
-    }
+    const endPoint = "apiLocal/data.json";
+    fetch(endPoint).then(resolve => resolve.json())
+    .then(res => {
+        const productsJson = res.productos;
+        const productsFilter = productsJson.filter( pro => pro.name.toLowerCase().includes(search.toLowerCase()));
+        renderizarProducts(productsFilter);
+        (search !== " " && productsFilter.length >= 1)? d.getElementById("errorTxt").classList.add("off") : d.getElementById("errorTxt").classList.remove("off");
+    })
+    .catch(()=>{
+        Swal.fire({
+            icon: "error",
+            title: "Ocurrio un error",
+        });
+    })
+
+  
 })
 selectCategory.addEventListener("change",(e)=>{
     const option = e.target.value;
@@ -111,7 +120,6 @@ const filterCategory =(typeCategory)=>{
         Swal.fire({
             icon: "error",
             title: "Ocurrio un error",
-            // showConfirmButtom: false,
           });
     });
 }
@@ -134,8 +142,8 @@ const getApiLocal = ()=>{
         Swal.fire({
             icon: "error",
             title: "Ocurrio un error",
-            // showConfirmButtom: false,
           });
     })
 }
 getApiLocal();
+
