@@ -1,13 +1,17 @@
 {
     "productos" : [
         {"id": 1, "name": "Bursa Blue", "price":80000, "img": "media/sapatos3a.jpg","category":"sapatos", "quantity":1},
-        {"id": 2, "name": "Megan Silver", "price":100000, "img": "media/zapatos1a.jpg","category":"sapatos", "quantity":1},
-        {"id": 3, "name": "Ligia Natural", "price":60000, "img": "media/sapatos2a.jpg","category":"tacos", "quantity":1}
+        {"id": 2, "name": "White Roses", "price":100000, "img": "media/tacos.png","category":"tacos", "quantity":1},
+        {"id": 3, "name": "Ligia Natural", "price":60000, "img": "media/sapatos2a.jpg","category":"sapatos", "quantity":1},
+        {"id": 4, "name": "Mora Dark", "price":120000, "img": "media/sandalia1.png","category":"sandalias", "quantity":1},
+        {"id": 5, "name": "Stetik Room", "price": 55000, "img": "media/sandalia2.png","category":"sandalias", "quantity":1}
+
+
     ],
     "categorys":[
-        {"id": 1, "name":"todos"},
-        {"id": 2, "name":"sapatos"},
-        {"id": 3, "name":"sandalias"},
-        {"id": 4, "name":"tacos"}
+        {"id": 1, "nameCategory":"todos"},
+        {"id": 2, "nameCategory":"sapatos"},
+        {"id": 3, "nameCategory":"sandalias"},
+        {"id": 4, "nameCategory":"tacos"}
     ]
 }

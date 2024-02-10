@@ -12,6 +12,14 @@ const selectCategory = d.getElementById("selectCategory");
 
 const loadCart = JSON.parse(localStorage.getItem("cart")) || [];
 const myCart = new Cart(loadCart);
+
+/*
+renderizar por categorias
+crear maquetacion de la pagina del carrito
+renderizar en tabla los productos 
+agregar opcion de eliminar del carrito y localstorage
+agregar botones para sumar y restar cantidad
+ */
 cartCount.innerText = myCart.getCount();
 btnModalOpen.addEventListener("click",()=>{
     modalIcon.classList.remove("off");
@@ -86,17 +94,34 @@ selectCategory.addEventListener("change",(e)=>{
     filterCategory(option);
 
 })
+const filterCategory =(typeCategory)=>{
+    const endPoint = "apiLocal/data.json";
+    fetch(endPoint).then(resolve => resolve.json())
+    .then(res=>{
+        const productsJson = res.productos;
+        const listProductos = productsJson.filter(p=>p.category == typeCategory);
+        if(listProductos.length >= 1){
+            renderizarProducts(listProductos);
+        }
+        else{
+            renderizarProducts(productsJson);
+        }
+    })
+    .catch(()=>{
+        Swal.fire({
+            icon: "error",
+            title: "Ocurrio un error",
+            // showConfirmButtom: false,
+          });
+    });
+}
 const renderCategory =(cateList)=>{
     selectCategory.innerHTML="";
     cateList.forEach(c => {
         selectCategory.innerHTML +=//html
-        `<option value="${c.id}">${c.name}</option>
+        `<option value="${c.nameCategory}">${c.nameCategory}</option>
         `
     });
-}
-const filterCategory =(idCate)=>{
-    const listProductos = productos.filter(p=>p.id == idCate);
-    renderizarProducts(listProductos);
 }
 const getApiLocal = ()=>{
     const endPoint = "apiLocal/data.json";
