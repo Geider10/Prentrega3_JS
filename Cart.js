@@ -8,6 +8,10 @@ class Cart{
         index == -1 ? this.cart.push(p):this.cart[index].quantity++;
         localStorage.setItem("cart",JSON.stringify(this.cart));
     }
+    deleteToCart(p){
+        this.cart.pop(p);
+        localStorage.setItem("cart",JSON.stringify(this.cart));//pisamos el string y tenemos nuevo array
+    }
     getProducts(){
         return this.cart;
     }
@@ -17,4 +21,5 @@ class Cart{
     getSum(){
         return this.cart.reduce((cont,item)=>{return cont + (item.quantity * item.price)},0);
     }
+
 }

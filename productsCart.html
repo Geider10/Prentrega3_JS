@@ -14,9 +14,9 @@
         </a>
     </header>
     <main class="tableMain">
-        <table class="table">
+        <table >
             <thead>
-                <tr class="rowTable">
+                <tr>
                     <th>Producto</th>
                     <th>Cantidad</th>
                     <th>Precio</th>
@@ -24,19 +24,15 @@
                 </tr>
             </thead>
 
-            <tbody id="modalListProducts">
-                <tr class="rowTable">
-                    <td> ${product.name} </td>
-                    <td> ${product.units}</td>
-                    <td>$${product.price}</td>
-                    <td>$${product.price * product.units}</td>
-                    
-                </tr>
-              
+            <tbody id="contentModal">
             </tbody>
-        
         </table>
     </main>
 
+    <script src="Cart.js"></script>
+    <script src="dataLocal.js"></script>
+    <script src="carrito.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

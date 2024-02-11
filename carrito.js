@@ -12,20 +12,21 @@ const selectCategory = d.getElementById("selectCategory");
 
 const loadCart = JSON.parse(localStorage.getItem("cart")) || [];
 const myCart = new Cart(loadCart);
-
+cartCount.innerText = myCart.getCount();
 /*
 renderizar por categorias ✅
 filtrar a traves de fetch ✅
 crear maquetacion de la pagina del carrito ✅
-renderizar en tabla los productos con api local
-agregar opcion de eliminar del carrito y localstorage
+renderizar en tabla los productos con api local ✅
+agregar opcion de eliminar del carrito y localstorage ✅
+otptimizar el codigo y return del json el array productos
 agregar botones para sumar y restar cantidad
  */
-cartCount.innerText = myCart.getCount();
+
 btnModalOpen.addEventListener("click",()=>{
     // modalIcon.classList.remove("off");
-    renderizarCart(myCart.getProducts());
-    payTotalCart.innerText = myCart.getSum();
+    // renderizarCart(myCart.getProducts());
+    // payTotalCart.innerText = myCart.getSum();
 })
 btnModalClose.addEventListener("click",()=>{modalIcon.classList.add("off")})
 
@@ -57,27 +58,54 @@ const addToCart =(e)=>{
         confirmButtonText: "Confirmar"
       }).then((result) => {
         const confirm = result.isConfirmed;
-        if(confirm){
-            const id = e.target.id;
-            const getProduct = productos.find(item => item.id == id);
+        const mId = e.target.id;
+       confirmAddToCart(confirm,mId);
+      });
+}
+const confirmAddToCart=(response,pId)=>{
+    const endPoint = "apiLocal/data.json";
+    fetch(endPoint).then(resolve => resolve.json())
+    .then(res =>{
+        const productsArray = res.productos;
+        if(response){
+            const getProduct = productsArray.find(item => item.id == pId);
             myCart.addToCart(getProduct);
             cartCount.innerText = myCart.getCount();
+            renderizarCart(myCart.getProducts());
+            payTotalCart.innerText = myCart.getSum();
         }
-      });
+    })
+    .catch(()=>{console.log("Hay un error")})
 }
 const renderizarCart =(productsArray)=>{
     modalContent.innerHTML = "";
     productsArray.forEach(p => {
         modalContent.innerHTML +=//html
-        `<div class="cartProduct">
-           <img src="${p.img}" class="imgModal" alt="${p.name}">
-           <h3>${p.name}</h3>
-           <p>${p.quantity}</p>
-           <p>${p.price}</p>
-           <p>${p.price * p.quantity}</p>
-           <button class="closeProduct" id="btnCloseProduct">X</button>
-        </div>`
+        `<tr>
+            <td><img src="${p.img}" alt="${p.name}" class="imgTable"></td>
+            <td> ${p.name} </td>
+            <td> ${p.quantity}</td>
+            <td>$${p.price}</td>
+            <td>$${p.quantity * p.price}</td>
+            <td> <span class="btnDelete" id="${p.id}">X</span></td>
+        </tr> `
     });
+    const btns = d.querySelectorAll(".btnDelete");
+    btns.forEach(b=> b.addEventListener("click",deleteToCart));
+}
+deleteToCart=(e)=>{
+    const valor = e.target.id;
+    const endPoint = "apiLocal/data.json";
+    fetch(endPoint).then(resolve => resolve.json())
+    .then(res =>{
+        const productsArray = res.productos;
+        const getProduct = productsArray.find(item => item.id == valor);
+        myCart.deleteToCart(getProduct);
+        cartCount.innerText = myCart.getCount();
+        renderizarCart(myCart.getProducts());
+        payTotalCart.innerText = myCart.getSum();
+    })
+    .catch(()=>{console.log("Hay un error")})
 }
 inputSearch.addEventListener("input",(e)=>{
     const search = e.target.value;
@@ -138,6 +166,9 @@ const getApiLocal = ()=>{
         const {productos, categorys} = r;
         renderizarProducts(productos);
         renderCategory(categorys);
+        renderizarCart(myCart.getProducts());
+        payTotalCart.innerText = myCart.getSum();
+
     }).catch(e => {
         Swal.fire({
             icon: "error",
@@ -146,4 +177,3 @@ const getApiLocal = ()=>{
     })
 }
 getApiLocal();
-

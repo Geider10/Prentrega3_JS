@@ -23,19 +23,19 @@
             <h2>Carrito de compras</h2>
             <button class="closeCart" id="btnModalC">X</button>
         </div>
-        <div class="titleModal">
+        <!-- <div class="titleModal">
             <p>Producto</p>
             <p>Nombre</p>
             <p>Precio</p>
             <p>Cantidad</p>
             <p>Total</p>
             <p></p>
-        </div>
-        <div class="cModal" id="contentModal" modoGray>
+        </div> -->
+        <!-- <div class="cModal" id="contentModal" modoGray>
         </div>
         <div class="fModal" id="footerModal" modoGray>
             <p> Total a pagar :$ <span id="payTotal"></span></p>
-        </div>
+        </div> -->
     </section>
     <main class="content">
         <section class="contentTools">
@@ -54,7 +54,27 @@
         </section>
         <p class="txtError off" id="errorTxt">No hay dicho producto</p>
     </main>
+    <main class="tableMain">
+        <table >
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody id="contentModal">
+            </tbody>
+            <tr>
+            <th>Total $<span id="payTotal"></span></th>
 
+            </tr>
+        </table>
+    </main>
+    <!-- <img src="media/sandalia1.png" alt="fafasfa" class="imgTable"> -->
     <script src="Cart.js"></script>
     <script src="dataLocal.js"></script>
     <script src="carrito.js"></script>
