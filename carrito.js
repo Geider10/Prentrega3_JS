@@ -159,7 +159,18 @@ const renderCategory =(cateList)=>{
         `
     });
 }
+const stateLoader=(value)=>{
+    console.log(value);
+    if(value === 1){
+        d.getElementById("load").classList.remove("off");
+    }
+    else if(value === 0){
+        d.getElementById("load").classList.add("off");
+    }
+}
+
 const getApiLocal = ()=>{
+    stateLoader(1);
     const endPoint = "apiLocal/data.json";
     fetch(endPoint).then(res => res.json())
     .then(r =>{
@@ -169,11 +180,15 @@ const getApiLocal = ()=>{
         renderizarCart(myCart.getProducts());
         payTotalCart.innerText = myCart.getSum();
 
-    }).catch(e => {
+    }).catch(()=> {
         Swal.fire({
             icon: "error",
             title: "Ocurrio un error",
           });
     })
+    .finally(()=>{
+        stateLoader(0);
+    })
 }
 getApiLocal();
+
