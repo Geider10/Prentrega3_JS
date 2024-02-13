@@ -3,41 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-
     <link rel="stylesheet" href="estilo.css">
-    <title>Document</title>
+    <title>Inicio - Tienda</title>
 </head>
 <body>
     <header>
-        <h1>Elegi tu sapato, tu estilo!</h1>
-        <a href="productsCart.html" target="_blank" class="btn key" id="btnModalO">
+        <h1>Tienda: elegi tu calzado!</h1>
+        <a href="productsCart.html" class="btn key" id="btnModalO">
             <span>🛒</span>
             <span id="cartCount">0</span>
         </a>
     </header>
 
-    <div class="loader off" id="load"></div>
-    <section class="modal off" id="conteinerModal" >
-        <div class="hModal" id="headerModal" >
-            <h2>Carrito de compras</h2>
-            <button class="closeCart" id="btnModalC">X</button>
-        </div>
-        <!-- <div class="titleModal">
-            <p>Producto</p>
-            <p>Nombre</p>
-            <p>Precio</p>
-            <p>Cantidad</p>
-            <p>Total</p>
-            <p></p>
-        </div> -->
-        <!-- <div class="cModal" id="contentModal" modoGray>
-        </div>
-        <div class="fModal" id="footerModal" modoGray>
-            <p> Total a pagar :$ <span id="payTotal"></span></p>
-        </div> -->
-    </section>
     <main class="content">
         <section class="contentTools">
             <div class="contentSearch">
@@ -48,14 +26,16 @@
                 <select id="selectCategory">
                 </select>
             </div>
-           <!-- <button class="btn" id="btnOrder"> Order</button> -->
         </section>
+
+        <p class="txtError off" id="errorTxt">No hay dicho producto</p>
+
         <section id="contentProducts" class="contentProducts">
            
         </section>
-        <p class="txtError off" id="errorTxt">No hay dicho producto</p>
+       
     </main>
-    <main class="tableMain">
+    <section class="tableMain off">
         <table >
             <thead>
                 <tr>
@@ -71,13 +51,14 @@
             </tbody>
             <tr>
             <th>Total $<span id="payTotal"></span></th>
-
             </tr>
         </table>
-    </main>
-
-    <script src="Cart.js"></script>
+      
+    </section>
+    <div class="loader off" id="load"></div>
+    
     <script src="dataLocal.js"></script>
+    <script src="Cart.js"></script>
     <script src="carrito.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -3,17 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="estilo.css">
-    <title>Document</title>
+    <title>Carrito - Tienda</title>
 </head>
 <body>
     <header>
-        <h1>Todos los productos seleccionados</h1>
-        <a href="index.html" class="btn key">
+        <h1>Productos seleccionados</h1>
+        <a href="index.html" class="btn key" id="btnModalO">
             <span>🏠</span>
+            <span id="cartCount">0</span>
         </a>
     </header>
-    <!-- <main class="tableMain">
+   
+    <main class="content">
+        <section class="contentTools off">
+            <div class="contentSearch">
+                <label for="search">Buscar</label>
+                <input type="search" class="txt" id="iptSearch" name="search">
+            </div>
+            <div class="contentOption">
+                <select id="selectCategory">
+                </select>
+            </div>
+        </section>
+        <section id="contentProducts" class="contentProducts off">
+           
+        </section>
+        <p class="txtError off" id="errorTxt">No hay dicho producto</p>
+    </main>
+    <section class="tableMain">
         <table >
             <thead>
                 <tr>
@@ -29,14 +48,14 @@
             </tbody>
             <tr>
             <th>Total $<span id="payTotal"></span></th>
-
             </tr>
         </table>
-    </main> -->
-
-    <script src="Cart.js"></script>
-    <script src="dataLocal.js"></script>
-    <script src="carrito.js"></script>
+      
+    </section>
+    <div class="loader off" id="load"></div>
+    
+    <script src="Cart.js" ></script>
+    <script src="carrito.js" ></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>

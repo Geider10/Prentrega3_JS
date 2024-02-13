@@ -55,6 +55,7 @@ header{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
+    margin-bottom: 40px;
 }
 .card{
     width: 280px;
@@ -82,9 +83,7 @@ header{
     cursor: pointer;
     float: right;
 }
-.off{
-    display: none;
-}
+
 .txtError{
   padding: 20px;
   border: 1px solid ;
@@ -188,7 +187,7 @@ header{
     padding: 10px;
     cursor: pointer;
   }
-  
+/* load */
   .loader{
     border: 10px solid rgba(0, 0, 0, .1);
     width: 100px;
@@ -208,6 +207,8 @@ header{
     }
     100%{
       transform: rotate(360deg);
-      
     }
   }
+  .off{
+    display: none;
+}

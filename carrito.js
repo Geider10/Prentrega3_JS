@@ -1,9 +1,7 @@
 const d = document;
 const cartCount = d.getElementById("cartCount");
-const modalIcon = d.getElementById("conteinerModal");
 const modalContent = d.getElementById("contentModal");
 const btnModalOpen = d.getElementById("btnModalO");
-const btnModalClose  = d.getElementById("btnModalC");
 const payTotalCart = d.getElementById("payTotal");
 
 const contentProducts = d.getElementById("contentProducts");
@@ -22,13 +20,6 @@ agregar opcion de eliminar del carrito y localstorage ✅
 otptimizar el codigo y return del json el array productos
 agregar botones para sumar y restar cantidad
  */
-
-btnModalOpen.addEventListener("click",()=>{
-    // modalIcon.classList.remove("off");
-    // renderizarCart(myCart.getProducts());
-    // payTotalCart.innerText = myCart.getSum();
-})
-btnModalClose.addEventListener("click",()=>{modalIcon.classList.add("off")})
 
 const renderizarProducts=(productsArray)=>{
     contentProducts.innerHTML ="";
@@ -160,7 +151,6 @@ const renderCategory =(cateList)=>{
     });
 }
 const stateLoader=(value)=>{
-    console.log(value);
     if(value === 1){
         d.getElementById("load").classList.remove("off");
     }
@@ -180,7 +170,7 @@ const getApiLocal = ()=>{
         renderizarCart(myCart.getProducts());
         payTotalCart.innerText = myCart.getSum();
 
-    }).catch(()=> {
+    }).catch(error => {
         Swal.fire({
             icon: "error",
             title: "Ocurrio un error",
@@ -190,5 +180,5 @@ const getApiLocal = ()=>{
         stateLoader(0);
     })
 }
-getApiLocal();
-
+stateLoader(1);
+setTimeout(getApiLocal,1000);
