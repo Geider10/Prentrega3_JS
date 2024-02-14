@@ -21,5 +21,18 @@ class Cart{
     getSum(){
         return this.cart.reduce((cont,item)=>{return cont + (item.quantity * item.price)},0);
     }
+    changeQuantity(myId,change){
+        const loadProduct = this.cart.find(item => item.id == myId);
+        if(change=="more"){
+            loadProduct.quantity++;
+            localStorage.setItem("cart",JSON.stringify(this.cart));
+        }
+        else if(change=="less"){
+            if(loadProduct.quantity >1){
+                loadProduct.quantity--;
+                localStorage.setItem("cart",JSON.stringify(this.cart));
+            }
+        }
+    }
 
 }

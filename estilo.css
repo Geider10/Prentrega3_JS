@@ -212,3 +212,17 @@ header{
   .off{
     display: none;
 }
+
+.btnModal{
+  padding: 5px 10px ;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px;
+}
+.restar{
+  background: yellow;
+}
+.sumar{
+  background: green;
+}

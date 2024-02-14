@@ -75,7 +75,7 @@ const renderizarCart =(productsArray)=>{
         `<tr>
             <td><img src="${p.img}" alt="${p.name}" class="imgTable"></td>
             <td> ${p.name} </td>
-            <td> ${p.quantity}</td>
+            <td> <span class="btnModal restar" id="${p.id}">-</span> ${p.quantity} <span class="btnModal sumar" id="${p.id}" >+</span></td>
             <td>$${p.price}</td>
             <td>$${p.quantity * p.price}</td>
             <td> <span class="btnDelete" id="${p.id}">X</span></td>
@@ -83,6 +83,13 @@ const renderizarCart =(productsArray)=>{
     });
     const btns = d.querySelectorAll(".btnDelete");
     btns.forEach(b=> b.addEventListener("click",deleteToCart));
+
+    const btnMore = d.querySelectorAll(".sumar");
+    btnMore.forEach(b=>b.addEventListener("click",moreToCart));
+    const btnLess = d.querySelectorAll(".restar");
+    btnLess.forEach(b=>b.addEventListener("click",lessToCart));
+    // console.log(btnMore,btnLess);
+
 }
 deleteToCart=(e)=>{
     const valor = e.target.id;
@@ -98,6 +105,21 @@ deleteToCart=(e)=>{
     })
     .catch(()=>{console.log("Hay un error")})
 }
+moreToCart=(e)=>{
+    const myId = e.target.id;
+    myCart.changeQuantity(myId,"more");
+    cartCount.innerText = myCart.getCount();
+    payTotalCart.innerText = myCart.getSum();
+    renderizarCart(myCart.getProducts());
+}
+lessToCart=(e)=>{
+    const myId = e.target.id;
+    myCart.changeQuantity(myId,"less");
+    cartCount.innerText = myCart.getCount();
+    payTotalCart.innerText = myCart.getSum();
+    renderizarCart(myCart.getProducts());
+}
+
 inputSearch.addEventListener("input",(e)=>{
     const search = e.target.value;
     const endPoint = "apiLocal/data.json";
