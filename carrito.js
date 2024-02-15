@@ -17,8 +17,8 @@ filtrar a traves de fetch ✅
 crear maquetacion de la pagina del carrito ✅
 renderizar en tabla los productos con api local ✅
 agregar opcion de eliminar del carrito y localstorage ✅
-otptimizar el codigo y return del json el array productos
-agregar botones para sumar y restar cantidad
+otptimizar el codigo y return el api fetch local
+agregar botones para sumar y restar cantidad ✅
  */
 
 const renderizarProducts=(productsArray)=>{
@@ -61,9 +61,7 @@ const confirmAddToCart=(response,pId)=>{
         if(response){
             const getProduct = productsArray.find(item => item.id == pId);
             myCart.addToCart(getProduct);
-            cartCount.innerText = myCart.getCount();
-            renderizarCart(myCart.getProducts());
-            payTotalCart.innerText = myCart.getSum();
+            loadDataCart();
         }
     })
     .catch(()=>{console.log("Hay un error")})
@@ -88,36 +86,21 @@ const renderizarCart =(productsArray)=>{
     btnMore.forEach(b=>b.addEventListener("click",moreToCart));
     const btnLess = d.querySelectorAll(".restar");
     btnLess.forEach(b=>b.addEventListener("click",lessToCart));
-    // console.log(btnMore,btnLess);
-
 }
 deleteToCart=(e)=>{
-    const valor = e.target.id;
-    const endPoint = "apiLocal/data.json";
-    fetch(endPoint).then(resolve => resolve.json())
-    .then(res =>{
-        const productsArray = res.productos;
-        const getProduct = productsArray.find(item => item.id == valor);
-        myCart.deleteToCart(getProduct);
-        cartCount.innerText = myCart.getCount();
-        renderizarCart(myCart.getProducts());
-        payTotalCart.innerText = myCart.getSum();
-    })
-    .catch(()=>{console.log("Hay un error")})
+    const myId = e.target.id;
+    myCart.deleteToCart(myId);
+    loadDataCart();
 }
 moreToCart=(e)=>{
     const myId = e.target.id;
     myCart.changeQuantity(myId,"more");
-    cartCount.innerText = myCart.getCount();
-    payTotalCart.innerText = myCart.getSum();
-    renderizarCart(myCart.getProducts());
+    loadDataCart();
 }
 lessToCart=(e)=>{
     const myId = e.target.id;
     myCart.changeQuantity(myId,"less");
-    cartCount.innerText = myCart.getCount();
-    payTotalCart.innerText = myCart.getSum();
-    renderizarCart(myCart.getProducts());
+    loadDataCart();
 }
 
 inputSearch.addEventListener("input",(e)=>{
@@ -172,6 +155,11 @@ const renderCategory =(cateList)=>{
         `
     });
 }
+const loadDataCart = ()=>{
+    cartCount.innerText = myCart.getCount();
+    payTotalCart.innerText = myCart.getSum();
+    renderizarCart(myCart.getProducts());
+}
 const stateLoader=(value)=>{
     if(value === 1){
         d.getElementById("load").classList.remove("off");
@@ -180,7 +168,6 @@ const stateLoader=(value)=>{
         d.getElementById("load").classList.add("off");
     }
 }
-
 const getApiLocal = ()=>{
     stateLoader(1);
     const endPoint = "apiLocal/data.json";
@@ -189,8 +176,7 @@ const getApiLocal = ()=>{
         const {productos, categorys} = r;
         renderizarProducts(productos);
         renderCategory(categorys);
-        renderizarCart(myCart.getProducts());
-        payTotalCart.innerText = myCart.getSum();
+        loadDataCart();
 
     }).catch(error => {
         Swal.fire({

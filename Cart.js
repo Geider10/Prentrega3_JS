@@ -8,8 +8,9 @@ class Cart{
         index == -1 ? this.cart.push(p):this.cart[index].quantity++;
         localStorage.setItem("cart",JSON.stringify(this.cart));
     }
-    deleteToCart(p){
-        this.cart.pop(p);
+    deleteToCart(pId){
+        const pro = this.cart.findIndex((item) => item.id == pId);
+        this.cart.splice(pro,1);
         localStorage.setItem("cart",JSON.stringify(this.cart));//pisamos el string y tenemos nuevo array
     }
     getProducts(){
