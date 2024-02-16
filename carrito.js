@@ -64,7 +64,12 @@ const confirmAddToCart=(response,pId)=>{
             loadDataCart();
         }
     })
-    .catch(()=>{console.log("Hay un error")})
+    .catch(()=>{
+        Swal.fire({
+            icon: "error",
+            title: "Ocurrio un error",
+          });
+        })
 }
 const renderizarCart =(productsArray)=>{
     modalContent.innerHTML = "";
@@ -133,12 +138,7 @@ const filterCategory =(typeCategory)=>{
     .then(res=>{
         const productsJson = res.productos;
         const listProductos = productsJson.filter(p=>p.category == typeCategory);
-        if(listProductos.length >= 1){
-            renderizarProducts(listProductos);
-        }
-        else{
-            renderizarProducts(productsJson);
-        }
+        listProductos.length >= 1? renderizarProducts(listProductos): renderizarProducts(productsJson);
     })
     .catch(()=>{
         Swal.fire({
