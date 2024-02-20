@@ -76,7 +76,7 @@ const renderizarCart =(productsArray)=>{
     productsArray.forEach(p => {
         modalContent.innerHTML +=//html
         `<tr>
-            <td><img src="${p.img}" alt="${p.name}" class="imgTable"></td>
+            <td class="imgName"><img src="${p.img}" alt="${p.name}" class="imgTable"></td>
             <td> ${p.name} </td>
             <td> <span class="btnModal restar" id="${p.id}">-</span> ${p.quantity} <span class="btnModal sumar" id="${p.id}" >+</span></td>
             <td>$${p.price}</td>
