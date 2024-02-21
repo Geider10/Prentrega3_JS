@@ -54,7 +54,7 @@ const addToCart =(e)=>{
       });
 }
 const confirmAddToCart=(response,pId)=>{
-    const endPoint = "apiLocal/data.json";
+    const endPoint = "/apiLocal/data.json";
     fetch(endPoint).then(resolve => resolve.json())
     .then(res =>{
         const productsArray = res.productos;
@@ -110,7 +110,7 @@ lessToCart=(e)=>{
 
 inputSearch.addEventListener("input",(e)=>{
     const search = e.target.value;
-    const endPoint = "apiLocal/data.json";
+    const endPoint = "/apiLocal/data.json";
     fetch(endPoint).then(resolve => resolve.json())
     .then(res => {
         const productsJson = res.productos;
@@ -133,7 +133,7 @@ selectCategory.addEventListener("change",(e)=>{
 
 })
 const filterCategory =(typeCategory)=>{
-    const endPoint = "apiLocal/data.json";
+    const endPoint = "/apiLocal/data.json";
     fetch(endPoint).then(resolve => resolve.json())
     .then(res=>{
         const productsJson = res.productos;
@@ -170,7 +170,7 @@ const stateLoader=(value)=>{
 }
 const getApiLocal = ()=>{
     stateLoader(1);
-    const endPoint = "apiLocal/data.json";
+    const endPoint = "/apiLocal/data.json";
     fetch(endPoint).then(res => res.json())
     .then(r =>{
         const {productos, categorys} = r;
