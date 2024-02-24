@@ -159,6 +159,15 @@ const loadDataCart = ()=>{
     cartCount.innerText = myCart.getCount();
     payTotalCart.innerText = myCart.getSum();
     renderizarCart(myCart.getProducts());
+    if(  myCart.getProducts().length >=1){
+        d.querySelector(".ancla").classList.add("off");
+        d.querySelector(".contentTable").classList.remove("off");
+    }   
+    else{
+        d.querySelector(".ancla").classList.remove("off");
+        d.querySelector(".contentTable").classList.add("off");
+
+    }
 }
 const stateLoader=(value)=>{
     if(value === 1){
@@ -169,7 +178,7 @@ const stateLoader=(value)=>{
     }
 }
 const getApiLocal = ()=>{
-    stateLoader(1);
+    // stateLoader(1);
     const endPoint = "/apiLocal/data.json";
     fetch(endPoint).then(res => res.json())
     .then(r =>{
@@ -189,4 +198,4 @@ const getApiLocal = ()=>{
     })
 }
 stateLoader(1);
-setTimeout(getApiLocal,1000);
+setTimeout(getApiLocal,100);

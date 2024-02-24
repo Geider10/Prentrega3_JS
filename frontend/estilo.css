@@ -165,6 +165,7 @@ header{
   /* productsCart */
   .tableMain{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top:100px;
@@ -209,9 +210,6 @@ header{
       transform: rotate(360deg);
     }
   }
-  .off{
-    display: none;
-  }
 
 .btnModal{
   padding: 5px 10px ;
@@ -226,6 +224,36 @@ header{
 }
 .sumar{
   background: green;
+}
+.contentCarritoVacio{
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  gap: 10px;
+}
+.contentCarritoVacio img{
+  width: 80%;
+  height: 50%;
+}
+
+.contentCarritoVacio h2{
+  font-size: 20px
+}
+.contentCarritoVacio a{
+  display: block;
+  text-decoration: none;
+  color: black;
+  background-color: #2ea1d6;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.off{
+  display: none;
 }
 
 @media (max-width: 800px){

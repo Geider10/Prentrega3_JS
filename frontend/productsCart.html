@@ -33,7 +33,12 @@
         <p class="txtError off" id="errorTxt">No hay dicho producto</p>
     </main>
     <section class="tableMain">
-        <table >
+        <div class="contentCarritoVacio ancla">
+            <img src="https://img.freepik.com/vector-premium/ilustracion-dibujos-animados-vector-bolsas-compras_508021-810.jpg?w=740" alt="bolsa vacia sin productos">
+            <h2>Agrega compras a tu carrito</h2>
+            <a href="/index.html">Ver productos</a>
+        </div>
+        <table class="contentTable">
             <thead>
                 <tr>
                     <th class="imgName">Producto</th>
@@ -50,10 +55,10 @@
             <th>Total $<span id="payTotal"></span></th>
             </tr>
         </table>
-      
+       
     </section>
     <div class="loader off" id="load"></div>
-    
+
     <script src="Cart.js" ></script>
     <script src="carrito.js" ></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
